@@ -11,7 +11,7 @@ function updateUI() {
         gameName.innerHTML = game.getName()
 
         if (game.currPlayer === 1) {
-            clickTarget
+            clickTarget 
         }
     }
 }
