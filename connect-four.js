@@ -1,26 +1,12 @@
 import { Game } from "./game.js"
-
+import { Column } from "./column.js"
 let game = undefined;
-function updateUI() {
-    const boardHolder = document.getElementById("board-holder")
-    const gameName = document.getElementById("game-name")
-    if (game === undefined) {
-        boardHolder.setAttribute("is-invisible", true)
-    } else {
-        boardHolder.removeAttribute("is-invisible")
-        gameName.innerHTML = game.getName()
-
-        if (game.currPlayer === 1) {
-            clickTarget 
-        }
-    }
-}
 
 window.addEventListener("DOMContentLoaded", (event) => {
     const playerOneInput = document.getElementById("player-1-name")
     const playerTwoInput = document.getElementById("player-2-name")
     const newGameButton = document.getElementById("new-game")
-    const clickTarget = document.getElementById('click-targets')
+    const clickTargets = document.getElementById('click-targets')
 
 
     function enableButton () {
@@ -42,12 +28,29 @@ window.addEventListener("DOMContentLoaded", (event) => {
         playerOneInput.value = '';
         playerTwoInput.value = '';
         newGameButton.disabled = true;
-        // console.log(boardHolder)
         updateUI();
-        // console.log(boardHolder)
     });
 
-    clickTarget.addEventListener('click', e => {
+    function updateUI() {
+        const boardHolder = document.getElementById("board-holder")
+        const gameName = document.getElementById("game-name")
+        if (game === undefined) {
+            boardHolder.setAttribute("is-invisible", true)
+        } else {
+            boardHolder.removeAttribute("is-invisible")
+            gameName.innerHTML = game.getName()
+
+            if (game.currPlayer === 1) {
+                clickTargets.classList.remove("red")
+                clickTargets.classList.add("black")
+            } else {
+                clickTargets.classList.remove("black")
+                clickTargets.classList.add("red")
+            }
+        }
+    }
+
+    clickTargets.addEventListener('click', e => {
         game.playInColumn();
         updateUI()
     })

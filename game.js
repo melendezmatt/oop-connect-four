@@ -3,13 +3,21 @@ export class Game {
         this.name1 = name1;
         this.name2 = name2;
         this.currPlayer = 1;
+        this.columns = [new Column(),new Column(), new Column(), new Column(), new Column(), new Column(), new Column()]
     }
 
     getName() {
         return `${this.name1} vs. ${this.name2}`
     }
 
-    playInColumn() {
+    playInColumn(index) {
+
+
+        this.columns(index)
+
+        add(this.currPlayer)
+
+
         if (this.currPlayer === 1) {
             this.currPlayer = 2;
         } else {
