@@ -26,6 +26,5 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
 
     newGameButton.addEventListener('click', e => {
-        e.preventDefault()
     })
 });
