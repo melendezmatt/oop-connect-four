@@ -1,7 +1,7 @@
 export class Game {
     constructor(name1, name2) {
-        this.name1 = playerOneName;
-        this.name2 = playerTwoName;
+        this.name1 = name1;
+        this.name2 = name2;
     }
 
     getName() {
