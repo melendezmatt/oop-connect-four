@@ -1,19 +1,31 @@
 import { Game } from "./game.js"
 
+let game = undefined;
+function updateUI() {
+    const boardHolder = document.getElementById("board-holder")
+    const gameName = document.getElementById("game-name")
+    if (game === undefined) {
+        boardHolder.setAttribute("is-invisible", true)
+    } else {
+        boardHolder.removeAttribute("is-invisible")
+        gameName.innerHTML = game.getName()
+
+        if (game.currPlayer === 1) {
+            clickTarget
+        }
+    }
+}
 
 window.addEventListener("DOMContentLoaded", (event) => {
-
-    let game = undefined;
     const playerOneInput = document.getElementById("player-1-name")
     const playerTwoInput = document.getElementById("player-2-name")
     const newGameButton = document.getElementById("new-game")
+    const clickTarget = document.getElementById('click-targets')
+
 
     function enableButton () {
-        // console.log(playerOneInput.value.length)
         if (!playerOneInput.value.length || !playerTwoInput.value.length) {
             newGameButton.disabled = false;
-        } else {
-            newGameButton.disabled = true;
         }
     }
 
@@ -25,6 +37,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
         enableButton();
     });
 
-    newGameButton.addEventListener('click', e => {
+    newGameButton.addEventListener("click", (event) => {
+        game = new Game(playerOneInput.value, playerTwoInput.value);
+        playerOneInput.value = '';
+        playerTwoInput.value = '';
+        newGameButton.disabled = true;
+        // console.log(boardHolder)
+        updateUI();
+        // console.log(boardHolder)
+    });
+
+    clickTarget.addEventListener('click', e => {
+        game.playInColumn();
+        updateUI()
     })
+
 });
