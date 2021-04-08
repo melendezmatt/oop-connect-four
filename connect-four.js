@@ -8,8 +8,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const newGameButton = document.getElementById("new-game")
     const clickTargets = document.getElementById('click-targets')
 
-
-
     function enableButton () {
         if (!playerOneInput.value.length || !playerTwoInput.value.length) {
             newGameButton.disabled = false;
