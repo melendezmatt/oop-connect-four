@@ -16,9 +16,9 @@ export class Column {
         return this.tokens[row]
     };
 
-    isFull(column) {
-        for(let i = 0; i < column.length; i++) {
-            if (column[i] === null) {
+    isFull() {
+        for(let i = 0; i < this.tokens.length; i++) {
+            if (this.tokens[i] === null) {
                 return false;
             }
         }

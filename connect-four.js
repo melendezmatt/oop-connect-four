@@ -48,7 +48,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 clickTargets.classList.remove("black")
                 clickTargets.classList.add("red")
             }
-    
+
             for (let row = 0; row < 6; row++) {
                 for (let column = 0; column < 7; column++ ) {
                     let square = document.getElementById(`square-${row}-${column}`)
@@ -63,13 +63,17 @@ window.addEventListener("DOMContentLoaded", (event) => {
                         tokenRed.setAttribute("class", "token red")
                         square.appendChild(tokenRed)
                     }
+                    let currCol = document.getElementById(`column-${column}`);
+                    if (game.isColumnFull(column)) {
+                        currCol.classList.add('full');
+                    } else {
+                        currCol.classList.remove('full');
+                    }
                 }
             }
         }
 
     }
-
-
 
     clickTargets.addEventListener('click', event => {
         if (event.target.id.includes('column')) {
