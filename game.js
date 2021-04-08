@@ -1,5 +1,7 @@
 import {Column} from "./column.js"
 import { ColumnWinInspector } from "./column-win-inspector.js"
+import { RowWinInspector } from "./row-win-inspector.js";
+import { DiagonalWinInspector } from "./diagonal-win-inspector.js"
 
 export class Game {
     constructor(name1, name2) {
@@ -24,6 +26,9 @@ export class Game {
     }
 
     playInColumn(index) {
+        if (this.winnerNumber !== 0) {
+            return;
+        }
         this.columns[index].add(this.currPlayer)
         if (this.currPlayer === 1) {
             this.currPlayer = 2;
@@ -32,6 +37,8 @@ export class Game {
         }
         this.checkForTie();
         this.checkForColumnWin();
+        this.checkForRowWin();
+        this.checkForDiagonalWin();
     }
 
     getTokenAt(row, column) {
@@ -39,6 +46,9 @@ export class Game {
     }
 
     isColumnFull(index) {
+        if (this.winnerNumber !== 0) {
+            return true;
+        }
         return this.columns[index].isFull();
     }
 
@@ -50,7 +60,7 @@ export class Game {
 
     checkForColumnWin() {
         if (this.winnerNumber !== 0) {
-            return
+            return;
         }
         this.columns.forEach(column => {
             let currColumn = new ColumnWinInspector(column)
@@ -60,5 +70,37 @@ export class Game {
                 this.winnerNumber = 2
             }
         })
+    }
+
+    checkForRowWin() {
+        if (this.winnerNumber !== 0) {
+            return;
+        }
+
+        for (let columnIndex = 0; columnIndex < 4; columnIndex++) {
+            const columns = this.columns.slice(columnIndex, columnIndex + 4);
+            let currRow = new RowWinInspector(columns);
+            if (currRow.inspect() === 1) {
+                this.winnerNumber = 1
+            } else if (currRow.inspect() === 2) {
+                this.winnerNumber = 2
+            }
+        }
+    }
+
+    checkForDiagonalWin() {
+        if (this.winnerNumber !== 0) {
+            return;
+        }
+
+        for (let columnIndex = 0; columnIndex < 4; columnIndex++) {
+            const columns = this.columns.slice(columnIndex, columnIndex + 4);
+            let currDiagonal = new DiagonalWinInspector(columns);
+            if (currDiagonal.inspect() === 1) {
+                this.winnerNumber = 1
+            } else if (currDiagonal.inspect() === 2) {
+                this.winnerNumber = 2
+            }
+        }
     }
 }
