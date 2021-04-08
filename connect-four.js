@@ -1,5 +1,5 @@
 import { Game } from "./game.js"
-import { Column } from "./column.js"
+
 let game = undefined;
 
 window.addEventListener("DOMContentLoaded", (event) => {
