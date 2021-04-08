@@ -53,9 +53,12 @@ export class Game {
             return
         }
         this.columns.forEach(column => {
-            let currColumn = new ColumnWinInspector()
-            console.log(currColumn.inspect())
-
+            let currColumn = new ColumnWinInspector(column)
+            if (currColumn.inspect() === 1) {
+                this.winnerNumber = 1
+            } else if (currColumn.inspect() === 2) {
+                this.winnerNumber = 2
+            }
         })
     }
 }

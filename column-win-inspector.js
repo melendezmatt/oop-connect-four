@@ -1,21 +1,16 @@
 import { Column } from "./column.js";
 
 export class ColumnWinInspector {
-    constructor() {
-        this.column = Column
+    constructor(currColumn) {
+        this.currColumn = currColumn.tokens;
     }
 
     inspect() {
-        for (let i = 0; i < this.column.length - 4; i++) {
-            if (this.column[i] === this.column[i+1] && this.column[i+1] === this.column[i+2] && this.column[i+2] === this.column[i+3] && this.column[i] === 1) {
-                console.log('black win')
-                return 1;
-            } else if (this.column[i] === this.column[i+1] && this.column[i+1] === this.column[i+2] && this.column[i+2] === this.column[i+3] && this.column[i] === 2) {
-                console.log('red win')
-                return 2;
-            } else {
-                return 0;
+        for (let i = 0; i < this.currColumn.length - 3; i++) {
+            if (this.currColumn[i] !== null && this.currColumn[i] === this.currColumn[i+1] && this.currColumn[i+1] === this.currColumn[i+2] && this.currColumn[i+2] === this.currColumn[i+3]) {
+                return this.currColumn[i];
             }
         }
+        return 0;
     }
 }
