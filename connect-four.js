@@ -1,5 +1,5 @@
 import { Game } from "./game.js"
-import { Column } from "./column.js"
+
 let game = undefined;
 
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -50,8 +50,17 @@ window.addEventListener("DOMContentLoaded", (event) => {
         }
     }
 
+    const clickTarget = document.querySelector('.click-target')
+
+
     clickTargets.addEventListener('click', e => {
-        game.playInColumn();
+        if (clickTarget.id.includes('column')) {
+            let split = clickTarget.id.split('-')
+            let index = Number.parseInt(split[1]);
+            console.log(clickTarget.id)
+            console.log(index)
+            // game.playInColumn(index)
+        }
         updateUI()
     })
 
