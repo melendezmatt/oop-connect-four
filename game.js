@@ -1,4 +1,4 @@
-import {Column} from "./column.js"
+import { Column } from "./column.js"
 import { ColumnWinInspector } from "./column-win-inspector.js"
 import { RowWinInspector } from "./row-win-inspector.js";
 import { DiagonalWinInspector } from "./diagonal-win-inspector.js"
@@ -14,9 +14,9 @@ export class Game {
 
     getName() {
         if (this.winnerNumber === 1) {
-            return `${this.name1.toUpperCase()} Wins!`
+            return `${this.name1.toUpperCase()} WINS!`
         }  else if (this.winnerNumber === 2) {
-            return `${this.name2.toUpperCase()} Wins!`
+            return `${this.name2.toUpperCase()} WINS!`
         } else if (this.winnerNumber === 3) {
             return `${this.name1.toUpperCase()} TIES WITH ${this.name2.toUpperCase()}`
         }
