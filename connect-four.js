@@ -9,6 +9,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const clickTargets = document.getElementById('click-targets')
 
 
+
     function enableButton () {
         if (!playerOneInput.value.length || !playerTwoInput.value.length) {
             newGameButton.disabled = false;
@@ -47,21 +48,37 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 clickTargets.classList.remove("black")
                 clickTargets.classList.add("red")
             }
+    
+            for (let row = 0; row < 6; row++) {
+                for (let column = 0; column < 7; column++ ) {
+                    let square = document.getElementById(`square-${row}-${column}`)
+                    square.innerHTML = '';
+                    let currVal = game.getTokenAt(row, column)
+                    if (currVal === 1) {
+                        let tokenBlack = document.createElement('div')
+                        tokenBlack.setAttribute("class", "token black")
+                        square.appendChild(tokenBlack)
+                    } else if (currVal === 2) {
+                        let tokenRed = document.createElement('div')
+                        tokenRed.setAttribute("class", "token red")
+                        square.appendChild(tokenRed)
+                    }
+                }
+            }
         }
+
     }
 
-    const clickTarget = document.querySelector('.click-target')
 
 
-    clickTargets.addEventListener('click', e => {
-        if (clickTarget.id.includes('column')) {
-            let split = clickTarget.id.split('-')
+    clickTargets.addEventListener('click', event => {
+        if (event.target.id.includes('column')) {
+            let split = event.target.id.split('-');
             let index = Number.parseInt(split[1]);
-            console.log(clickTarget.id)
-            console.log(index)
-            // game.playInColumn(index)
+            game.playInColumn(index)
+            updateUI()
         }
-        updateUI()
+
     })
 
 });

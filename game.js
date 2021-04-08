@@ -9,7 +9,7 @@ export class Game {
     }
 
     getName() {
-        return `${this.name1} vs. ${this.name2}`
+        return `${this.name1.toUpperCase()} VS. ${this.name2.toUpperCase()}`
     }
 
     playInColumn(index) {
@@ -24,4 +24,6 @@ export class Game {
     getTokenAt(row, column) {
         return this.columns[column].getTokenAt(row)
     }
+
+    isColumnFull
 }
